@@ -1,8 +1,8 @@
 export const loginData = {
     validUser: {
-        email:         'user@example.com',
-        password:      'Password123',
-        redirectURL:   /dashboard/,
+        email:         'test1@gmail.com',
+        password:      'Aa@123456',
+        redirectURL:   'https://qa.engazhr.co/en/login',
     },
     invalidUser: {
         email:         'wrong@example.com',
