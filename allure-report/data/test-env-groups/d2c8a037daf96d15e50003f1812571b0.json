@@ -1,1 +1,1 @@
-{"id":"d2c8a037daf96d15e50003f1812571b0","fullName":"specs/login.spec.ts:18:9","name":"invalid credentials → shows correct error message","status":"failed","testResultsByEnv":{"default":"7d3bc338a447e30c8bf178dde0fa40c9"}}
+{"id":"d2c8a037daf96d15e50003f1812571b0","fullName":"specs/login.spec.ts:18:9","name":"invalid credentials → shows correct error message","status":"passed","testResultsByEnv":{"default":"9092dd123126a8611af352ef3418a7f4"}}
