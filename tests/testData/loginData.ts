@@ -6,7 +6,7 @@ export const loginData = {
     },
     invalidUser: {
         email:         'wrong@example.com',
-        password:      'Aa@000000wrong',
+        password:      'Aa@00000k0wrong',
         expectedError: 'Invalid email or password',
     },
     emptyUser: {
