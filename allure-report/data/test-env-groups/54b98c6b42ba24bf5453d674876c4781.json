@@ -1,1 +1,0 @@
-{"id":"54b98c6b42ba24bf5453d674876c4781","fullName":"specs/login.spec.ts:30:9","name":"already authenticated user revisits login → redirected away","status":"passed","testResultsByEnv":{"default":"555e855c33753ee8105c337bee09d04d"}}
