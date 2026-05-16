@@ -4,13 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clean:reports": "rimraf allure-results allure-report && mkdirp allure-results allure-report",
-    "generate:report": "npx allure generate ./allure-results -o ./allure-report",
-    "open:report": "npx allure open ./allure-report",
-    "pretest": "npm run clean:reports",
-    "posttest": "npm run generate:report && npm run open:report",
-    "script:to:run": "npx playwright test tests/specs/",
-    "test": "npm run script:to:run"
+    "test": "npx playwright test tests/specs/"
   },
   "keywords": [],
   "author": "",
@@ -19,11 +13,8 @@
   "devDependencies": {
     "@playwright/test": "^1.60.0",
     "@types/node": "^25.6.1",
+    "allure-commandline": "^2.41.0",
     "allure-playwright": "^3.8.0",
     "dotenv": "^17.4.2"
-  },
-  "dependencies": {
-    "mkdirp": "^3.0.1",
-    "rimraf": "^6.1.3"
   }
 }
