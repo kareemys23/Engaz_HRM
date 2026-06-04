@@ -1,12 +1,12 @@
 export const loginData = {
     validUser: {
-        email:         'user@example.com',
-        password:      'Password123',
+        email:         process.env.VALID_USER_EMAIL!,
+        password:      process.env.VALID_USER_PASSWORD!,
         redirectURL:   /dashboard/,
     },
     invalidUser: {
-        email:         'wrong@example.com',
-        password:      'wrongpass',
+        email:         process.env.INVALID_USER_EMAIL!,
+        password:      process.env.INVALID_USER_PASSWORD!,
         expectedError: 'Invalid email or password',
     },
     emptyUser: {
