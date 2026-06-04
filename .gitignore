@@ -1,4 +1,7 @@
 
+# Environment variables (never commit secrets)
+.env
+
 # Playwright
 node_modules/
 /test-results/
