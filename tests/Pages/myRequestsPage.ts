@@ -15,9 +15,11 @@ export class MyRequestsPage extends Actions {
         await this.click(this.locators.myRequestsTab);
     }
 
-    async createNewMaternityRequest(requestType: string, notes: string) {
+    async createNewRequestFunction() {
         await this.click(this.locators.createRequestButton);
         await this.click(this.locators.requestTypeList);
+    }
+    async createNewMaternityRequest(requestType: string, notes: string) {
         await this.click(this.locators.requestTypeOption.filter({ hasText: requestType }));
         await this.click(this.locators.requestDate);
         await this.click(this.locators.monthSelection);

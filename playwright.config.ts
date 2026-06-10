@@ -26,18 +26,17 @@ export default defineConfig({
     ['line'],
     ['allure-playwright', { outputFolder: 'allure-results' }],
     ['./tests/allureReporter.js'],
-    ['./tests/allure-auto-reporter.ts'],
     ...(process.env.RP_ENDPOINT ? [[
       '@reportportal/agent-js-playwright',
       {
-        apiKey: process.env.RP_API_KEY,
-        endpoint: process.env.RP_ENDPOINT,
-        project: process.env.RP_PROJECT,
-        launch: process.env.RP_LAUNCH_NAME || 'Playwright Tests',
+        apiKey: process.env.RP_API_KEY ?? '',
+        endpoint: process.env.RP_ENDPOINT ?? '',
+        project: process.env.RP_PROJECT ?? '',
+        launch: process.env.RP_LAUNCH_NAME ?? 'Playwright Tests',
         attributes: [{ value: 'playwright' }],
         description: 'Playwright automated test run',
       },
-    ]] : []),
+    ] as [string, Record<string, unknown>]] : []),
   ],
   timeout: 30000,
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */

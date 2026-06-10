@@ -18,6 +18,7 @@ test.describe('My Requests', () => {
 
     test('create new request successfully', async () => {
         await myRequestsPage.navigateToMyRequests();
+        await myRequestsPage.createNewRequestFunction();
         await myRequestsPage.createNewMaternityRequest('Maternity Leave', 'Test request notes');
         const successMessage = await myRequestsPage.getSuccessMessage();
         expect(successMessage).toBeTruthy();
