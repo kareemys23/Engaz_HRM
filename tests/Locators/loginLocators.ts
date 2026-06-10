@@ -8,10 +8,10 @@ export class LoginLocators {
     readonly pageTitle:     Locator;
 
     constructor(page: Page) {
-        this.usernameInput = page.locator('input[name="email"]');
-        this.passwordInput = page.locator('input[name="password"]');
-        this.submitButton  = page.locator('button[type="submit"]');
-        this.errorMessage  = page.locator('.error-message');
+        this.usernameInput = page.locator('input[id="email"]');
+        this.passwordInput = page.locator('input[id="password"]');
+        this.submitButton  = page.getByRole('button', { name: 'Login' });
+        this.errorMessage  = page.locator('[class*="error"], [class*="invalid"], .text-danger, mat-error').first();
         this.pageTitle     = page.locator('h1');
     }
 }
