@@ -16,7 +16,7 @@ test.describe('My Requests', () => {
         await expect(page).toHaveURL(loginData.validUser.redirectURL);
     });
 
-    test('create new request successfully', async () => {
+    test('create new request Maternity Request successfully', async () => {
         await myRequestsPage.navigateToMyRequests();
         await myRequestsPage.createNewRequestFunction();
         await myRequestsPage.createNewMaternityRequest('Maternity Leave', 'Test request notes');
@@ -31,7 +31,12 @@ test.describe('My Requests', () => {
         await myRequestsPage.navigateToMyRequests();
         await myRequestsPage.createNewRequestFunction();
         await myRequestsPage.createNewSickLeaveRequest('Sick Leave', 'Test sick leave request notes');
+        await myRequestsPage.submitSickLeaveRequest();
         await myRequestsPage.cancelRequest();
+        await test.step('Verify attachment deadline alert is visible', async () => {
+            const attachmentDeadlineAlertVisible = await myRequestsPage.assertAttachmentDeadlineAlert();
+            expect(attachmentDeadlineAlertVisible).toBeTruthy();
+        });
         const successMessage = await myRequestsPage.getSuccessMessage();
         expect(successMessage).toBeTruthy();
         const cancelSuccessMessage = await myRequestsPage.getCancelSuccessMessage();

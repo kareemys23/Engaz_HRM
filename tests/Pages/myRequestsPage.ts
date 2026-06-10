@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 import Actions from "../Utils/actionsUtils";
 import { MyRequestsLocators } from "../Locators/myRequestsLocators";
 
@@ -54,6 +54,9 @@ export class MyRequestsPage extends Actions {
         await this.waitForElement(this.locators.secondDaySelection);
         await this.click(this.locators.secondDaySelection);
         await this.click(this.locators.continueRequestButton);
+    }
+
+    async submitSickLeaveRequest() {
         await this.click(this.locators.submitRequestButton);
     }
     async cancelRequest() {
@@ -70,5 +73,14 @@ export class MyRequestsPage extends Actions {
 
     async getCancelSuccessMessage(): Promise<string> {
         return await this.getText(this.locators.cancelSuccessMessage);
+    }
+
+    async assertAttachmentDeadlineAlert(): Promise<boolean> {
+        try {
+            await expect(this.locators.requestSickAttachmentsAlert).toContainText('Attachment deadline', { timeout: 10000 });
+            return true;
+        } catch {
+            return false;
+        }
     }
 }

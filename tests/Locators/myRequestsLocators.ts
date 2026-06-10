@@ -19,6 +19,7 @@ export class MyRequestsLocators {
     readonly submitRequestButton: Locator;
     readonly successMessage: Locator;
     readonly previewRequestButton: Locator;
+    readonly requestSickAttachmentsAlert: Locator;
     readonly cancelRequestButton: Locator;
     readonly confirmCancelButton: Locator;
     readonly cancelSuccessMessage: Locator;
@@ -42,6 +43,7 @@ export class MyRequestsLocators {
         this.submitRequestButton = page.getByRole('button', { name: 'Submit' });
         this.successMessage = page.getByText('Sep 21 - Sep 24,').first();
         this.previewRequestButton = page.getByRole('button', { name: 'View' }).first();
+        this.requestSickAttachmentsAlert = page.locator('section');
         this.cancelRequestButton = page.getByRole('button', { name: 'cancel Cancel Request' });
         this.confirmCancelButton = page.getByRole('button', { name: 'Yes, Cancel Request' });
         this.cancelSuccessMessage = page.getByText('Request canceled successfully.');
