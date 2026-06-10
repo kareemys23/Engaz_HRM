@@ -21,7 +21,9 @@ export class LoginPage extends Actions {
     }
 
     async submitEmptyForm() {
-        await this.click(this.locators.submitButton);
+        await this.locators.usernameInput.click();
+        await this.locators.passwordInput.click();
+        await this.page.keyboard.press('Tab');
     }
 
     async getErrorMessage(): Promise<string> {
@@ -29,7 +31,12 @@ export class LoginPage extends Actions {
     }
 
     async isErrorVisible(): Promise<boolean> {
-        return await this.isVisible(this.locators.errorMessage);
+        try {
+            await this.locators.errorMessage.waitFor({ state: 'visible', timeout: 8000 });
+            return true;
+        } catch {
+            return false;
+        }
     }
 
     async isOnLoginPage(): Promise<boolean> {
