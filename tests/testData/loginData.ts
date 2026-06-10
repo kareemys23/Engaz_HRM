@@ -1,12 +1,18 @@
+function getEnv(key: string): string {
+    const value = process.env[key];
+    if (!value) throw new Error(`Missing required environment variable: ${key}`);
+    return value;
+}
+
 export const loginData = {
     validUser: {
-        email:         process.env.VALID_USER_EMAIL!,
-        password:      process.env.VALID_USER_PASSWORD!,
+        email:         getEnv('VALID_USER_EMAIL'),
+        password:      getEnv('VALID_USER_PASSWORD'),
         redirectURL:   /dashboard/,
     },
     invalidUser: {
-        email:         process.env.INVALID_USER_EMAIL!,
-        password:      process.env.INVALID_USER_PASSWORD!,
+        email:         getEnv('INVALID_USER_EMAIL'),
+        password:      getEnv('INVALID_USER_PASSWORD'),
         expectedError: 'Invalid email or password',
     },
     emptyUser: {
