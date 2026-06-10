@@ -1,8 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","19154","create new request successfully","chromium","2026-06-10","passed","2026-06-10","My Requests","specs\myRequests.spec.ts","",""
-"","0","invalid credentials → shows correct error message","chromium","2026-06-10","skipped","2026-06-10","Login","specs\login.spec.ts","",""
-"","24754","create new sick leave request successfully","chromium","2026-06-11","passed","2026-06-11","My Requests","specs\myRequests.spec.ts","",""
-"","0","already authenticated user revisits login → redirected away","chromium","2026-06-10","skipped","2026-06-10","Login","specs\login.spec.ts","",""
-"","1","empty fields → required field validation","chromium","2026-06-10","skipped","2026-06-10","Login","specs\login.spec.ts","",""
-"","30228","valid credentials → successful login and correct redirect","chromium","2026-06-10","broken","2026-06-10","Login","specs\login.spec.ts","",""
-"","5589","valid credentials → successful login and correct redirect","chromium","2026-06-10","passed","2026-06-10","Login","specs\login.spec.ts","",""
