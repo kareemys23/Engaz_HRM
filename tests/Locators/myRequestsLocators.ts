@@ -5,7 +5,8 @@ export class MyRequestsLocators {
     readonly myRequestsTab: Locator;
     readonly createRequestButton: Locator;
     readonly requestTypeList: Locator;
-    readonly requestTypeOption: Locator;
+    readonly maternityRequestTypeOption: Locator;
+    readonly sickLeaveRequestTypeOption: Locator;
     readonly requestDate: Locator;
     readonly monthSelection: Locator;
     readonly firstDaySelection: Locator;
@@ -27,7 +28,8 @@ export class MyRequestsLocators {
         this.myRequestsTab = page.getByText('My Request', { exact: true });
         this.createRequestButton = page.getByRole('button', { name: 'Create New Request' }).first();
         this.requestTypeList = page.getByRole('combobox', { name: 'Select request type' });
-        this.requestTypeOption = page.getByRole('option', { name: /Maternity/i });
+        this.maternityRequestTypeOption = page.getByRole('option', { name: /Maternity/i });
+        this.sickLeaveRequestTypeOption = page.getByRole('option', { name: /Sick Leave/i });
         this.requestDate = page.locator('.date-picker-icon > svg > path').first();
         this.monthSelection = page.locator('.calendar-header > button:nth-child(3)');
         this.firstDaySelection = page.getByText('21', { exact: true });

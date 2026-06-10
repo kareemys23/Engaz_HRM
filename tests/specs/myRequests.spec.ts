@@ -12,7 +12,7 @@ test.describe('My Requests', () => {
         myRequestsPage = new MyRequestsPage(page);
 
         await loginPage.goto();
-        await loginPage.login(loginData.validUser.email, loginData.validUser.password);
+        await loginPage.loginSuccessfully(loginData.validUser.email, loginData.validUser.password);
         await expect(page).toHaveURL(loginData.validUser.redirectURL);
     });
 
@@ -20,6 +20,18 @@ test.describe('My Requests', () => {
         await myRequestsPage.navigateToMyRequests();
         await myRequestsPage.createNewRequestFunction();
         await myRequestsPage.createNewMaternityRequest('Maternity Leave', 'Test request notes');
+        await myRequestsPage.cancelRequest();
+        const successMessage = await myRequestsPage.getSuccessMessage();
+        expect(successMessage).toBeTruthy();
+        const cancelSuccessMessage = await myRequestsPage.getCancelSuccessMessage();
+        expect(cancelSuccessMessage).toBeTruthy();
+    });
+
+    test('create new sick leave request successfully', async () => {
+        await myRequestsPage.navigateToMyRequests();
+        await myRequestsPage.createNewRequestFunction();
+        await myRequestsPage.createNewSickLeaveRequest('Sick Leave', 'Test sick leave request notes');
+        await myRequestsPage.cancelRequest();
         const successMessage = await myRequestsPage.getSuccessMessage();
         expect(successMessage).toBeTruthy();
         const cancelSuccessMessage = await myRequestsPage.getCancelSuccessMessage();
