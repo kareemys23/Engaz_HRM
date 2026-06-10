@@ -1,7 +1,7 @@
 export const loginData = {
     validUser: {
-        email:         'test1@gmail.com',
-        password:      'Aa@123456',
+        email:         'ww221@co.com',
+        password:      'Test@1234',
         redirectURL:   'https://qa.engazhr.co/en/dashboard',
     },
     invalidUser: {

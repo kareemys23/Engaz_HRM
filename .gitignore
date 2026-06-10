@@ -1,4 +1,7 @@
 
+# Environment variables (never commit secrets)
+.env
+
 # Playwright
 node_modules/
 /test-results/
@@ -6,3 +9,10 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# Allure
+/allure-results/
+/allure-report/
+
+# TypeScript build output
+/dist/
