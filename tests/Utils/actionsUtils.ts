@@ -1,4 +1,5 @@
 import { Locator, Page } from "@playwright/test";
+import { attachment, ContentType, step } from "allure-js-commons";
 
 export default class Actions {
     protected readonly page: Page;
@@ -141,5 +142,18 @@ export default class Actions {
 
     protected async takeScreenshot(name: string) {
         await this.page.screenshot({ path: `screenshots/${name}.png` });
+    }
+
+    // ── Assertions ────────────────────────────────────────────────────────────
+
+    protected async assertStep<T>(stepName: string, assertion: () => Promise<T>): Promise<T> {
+        return await step(stepName, async () => {
+            try {
+                return await assertion();
+            } finally {
+                const screenshot = await this.page.screenshot();
+                await attachment(`${stepName} - screenshot`, screenshot, ContentType.PNG);
+            }
+        });
     }
 }
