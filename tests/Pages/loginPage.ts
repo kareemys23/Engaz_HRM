@@ -20,8 +20,15 @@ export class LoginPage extends Actions {
         await this.click(this.locators.submitButton);
     }
 
+    async loginSuccessfully(email: string, password: string) {
+        await this.login(email, password);
+        await this.page.waitForURL(/dashboard/, { timeout: 15000 });
+    }
+
     async submitEmptyForm() {
-        await this.click(this.locators.submitButton);
+        await this.locators.usernameInput.click();
+        await this.locators.passwordInput.click();
+        await this.page.keyboard.press('Tab');
     }
 
     async getErrorMessage(): Promise<string> {
@@ -29,7 +36,12 @@ export class LoginPage extends Actions {
     }
 
     async isErrorVisible(): Promise<boolean> {
-        return await this.isVisible(this.locators.errorMessage);
+        try {
+            await this.locators.errorMessage.waitFor({ state: 'visible', timeout: 8000 });
+            return true;
+        } catch {
+            return false;
+        }
     }
 
     async isOnLoginPage(): Promise<boolean> {
