@@ -12,8 +12,8 @@ test.describe('My Requests', () => {
         myRequestsPage = new MyRequestsPage(page);
 
         await loginPage.goto();
-        await loginPage.loginSuccessfully(loginData.validUser.email, loginData.validUser.password);
-        await expect(page).toHaveURL(loginData.validUser.redirectURL);
+        await loginPage.loginSuccessfully(loginData.validManager.email, loginData.validManager.password);
+        await expect(page).toHaveURL(loginData.validManager.redirectURL);
     });
 
     test('create new request Maternity Request successfully', async () => {

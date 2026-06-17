@@ -5,9 +5,14 @@ function getEnv(key: string): string {
 }
 
 export const loginData = {
-    validUser: {
-        email:         getEnv('VALID_USER_EMAIL'),
-        password:      getEnv('VALID_USER_PASSWORD'),
+    validManager: {
+        email:         getEnv('VALID_MANAGER_EMAIL'),
+        password:      getEnv('VALID_MANAGER_PASSWORD'),
+        redirectURL:   /dashboard/,
+    },
+    validEmployee: {
+        email:         getEnv('VALID_EMPLOYEE_EMAIL'),
+        password:      getEnv('VALID_EMPLOYEE_PASSWORD'),
         redirectURL:   /dashboard/,
     },
     invalidUser: {

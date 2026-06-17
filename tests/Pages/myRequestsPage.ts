@@ -68,7 +68,9 @@ export class MyRequestsPage extends Actions {
 
     async assertAttachmentDeadlineAlert(): Promise<boolean> {
         try {
-            await expect(this.locators.requestSickAttachmentsAlert).toContainText('Attachment deadline', { timeout: 10000 });
+            await this.assertStep('Attachment deadline alert is visible', () =>
+                expect(this.locators.requestSickAttachmentsAlert).toContainText('Attachment deadline', { timeout: 10000 })
+            );
             return true;
         } catch {
             return false;

@@ -24,6 +24,7 @@ export class ManagerRequestsLocators {
     readonly submitRequestButton: Locator;
     readonly successMessage: Locator;
     readonly previewRequestButton: Locator;
+    readonly closePreviewFormButton: Locator;
     readonly requestSickAttachmentsAlert: Locator;
     readonly rejectRequestButton: Locator;
     readonly rejectionReasonField: Locator;
@@ -57,6 +58,7 @@ export class ManagerRequestsLocators {
         this.submitRequestButton = page.getByRole('button', { name: 'Submit' });
         this.successMessage = page.getByText('Sep 21 - Sep 24,').first();
         this.previewRequestButton = page.getByRole('button', { name: 'View' }).first();
+        this.closePreviewFormButton = page.getByRole('button', { name: 'Close' });
         this.requestSickAttachmentsAlert = page.locator('section');
         this.rejectRequestButton = page.getByRole('button', { name: 'Reject' }).first();
         this.rejectionReasonField = page.getByRole('combobox', { name: 'Select a rejection reason' });
