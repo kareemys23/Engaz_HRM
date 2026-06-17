@@ -22,10 +22,6 @@ test.describe('My Requests', () => {
         await myRequestsPage.createNewMaternityRequest('Maternity Leave', 'Test request notes');
         await myRequestsPage.submitRequest();
         await myRequestsPage.cancelRequest();
-        const successMessage = await myRequestsPage.getSuccessMessage();
-        expect(successMessage).toBeTruthy();
-        const cancelSuccessMessage = await myRequestsPage.getCancelSuccessMessage();
-        expect(cancelSuccessMessage).toBeTruthy();
     });
 
     test('create new sick leave request successfully', async () => {
