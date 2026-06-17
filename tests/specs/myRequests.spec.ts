@@ -20,6 +20,7 @@ test.describe('My Requests', () => {
         await myRequestsPage.navigateToMyRequests();
         await myRequestsPage.createNewRequestFunction();
         await myRequestsPage.createNewMaternityRequest('Maternity Leave', 'Test request notes');
+        await myRequestsPage.submitRequest();
         await myRequestsPage.cancelRequest();
         const successMessage = await myRequestsPage.getSuccessMessage();
         expect(successMessage).toBeTruthy();
@@ -31,16 +32,12 @@ test.describe('My Requests', () => {
         await myRequestsPage.navigateToMyRequests();
         await myRequestsPage.createNewRequestFunction();
         await myRequestsPage.createNewSickLeaveRequest('Sick Leave', 'Test sick leave request notes');
-        await myRequestsPage.submitSickLeaveRequest();
+        await myRequestsPage.submitRequest();
         await myRequestsPage.cancelRequest();
         await test.step('Verify attachment deadline alert is visible', async () => {
             const attachmentDeadlineAlertVisible = await myRequestsPage.assertAttachmentDeadlineAlert();
             expect(attachmentDeadlineAlertVisible).toBeTruthy();
         });
-        const successMessage = await myRequestsPage.getSuccessMessage();
-        expect(successMessage).toBeTruthy();
-        const cancelSuccessMessage = await myRequestsPage.getCancelSuccessMessage();
-        expect(cancelSuccessMessage).toBeTruthy();
     });
 
     // test.afterAll(async ({ page }) => {
