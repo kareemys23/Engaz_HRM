@@ -25,7 +25,7 @@ export class ManagerRequestsPage extends Actions {
         await this.waitForElement(this.locators.requestTypeList);
         await this.click(this.locators.requestTypeList);
     }
-    async createNewMaternityRequest(requestType: string, notes: string) {
+    async createNewMaternityRequest(notes: string) {
         await this.click(this.locators.maternityRequestTypeOption);
         await this.click(this.locators.employeeNamefield);
         await this.click(this.locators.employeeNameSelector);
@@ -45,7 +45,7 @@ export class ManagerRequestsPage extends Actions {
         await this.click(this.locators.continueRequestButton);
     }
 
-    async createNewSickLeaveRequest(requestType: string, notes: string) {
+    async createNewSickLeaveRequest(notes: string) {
         await this.click(this.locators.sickLeaveRequestTypeOption);
         await this.click(this.locators.employeeNamefield);
         await this.click(this.locators.employeeNameSelector);
@@ -66,7 +66,6 @@ export class ManagerRequestsPage extends Actions {
     }
 
     async previewRequest() {
-        await this.page.waitForTimeout(2000);
         await this.waitForElement(this.locators.previewRequestButton);
         await this.click(this.locators.previewRequestButton);
         await this.waitForElement(this.locators.closePreviewFormButton);
@@ -74,14 +73,14 @@ export class ManagerRequestsPage extends Actions {
     }
 
     async rejectSickLeaveRequest() {
-        await this.page.waitForTimeout(2000);
+        await this.waitForElement(this.locators.rejectRequestButton);
         await this.click(this.locators.rejectRequestButton);
-        
+
     }
 
     async rejectRequest() {
         //Reject the request to make new request creation possible in next test run
-        await this.page.waitForTimeout(2000);
+        await this.waitForElement(this.locators.rejectRequestButton);
         await this.click(this.locators.rejectRequestButton);
         await this.click(this.locators.rejectionReasonField);
         await this.click(this.locators.rejectionReasonOption);

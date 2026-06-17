@@ -33,7 +33,7 @@ test.describe('Manager Requests', () => {
     test('create new request Maternity Request successfully', async () => {
         await managerRequestsPage.navigateToManagerRequests();
         await managerRequestsPage.createNewRequestFunction();
-        await managerRequestsPage.createNewMaternityRequest('Maternity Leave', 'Test request notes');
+        await managerRequestsPage.createNewMaternityRequest('Test request notes');
         await managerRequestsPage.submitRequest();
         await managerRequestsPage.rejectRequest();
     });
@@ -42,7 +42,7 @@ test.describe('Manager Requests', () => {
         // ----- Manager session -----
         await managerRequestsPage.navigateToManagerRequests();
         await managerRequestsPage.createNewRequestFunction();
-        await managerRequestsPage.createNewSickLeaveRequest('Sick Leave', 'Test sick leave request notes');
+        await managerRequestsPage.createNewSickLeaveRequest('Test sick leave request notes');
         await managerRequestsPage.submitRequest();
 
         // ----- Employee session -----
@@ -56,10 +56,11 @@ test.describe('Manager Requests', () => {
         await expect(employeePage).toHaveURL(loginData.validEmployee.redirectURL);
 
         await myRequestsPage.navigateToMyRequests();
-        await myRequestsPage.cancelRequest();
+        await myRequestsPage.openRequestPreview();
         await test.step('Verify attachment deadline alert is visible', async () => {
             const attachmentDeadlineAlertVisible = await myRequestsPage.assertAttachmentDeadlineAlert();
             expect(attachmentDeadlineAlertVisible).toBeTruthy();
         });
+        await myRequestsPage.confirmCancelRequest();
     });
 });

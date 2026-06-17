@@ -23,7 +23,7 @@ export class MyRequestsPage extends Actions {
         await this.waitForElement(this.locators.requestTypeList);
         await this.click(this.locators.requestTypeList);
     }
-    async createNewMaternityRequest(requestType: string, notes: string) {
+    async createNewMaternityRequest(notes: string) {
         await this.click(this.locators.maternityRequestTypeOption);
         await this.click(this.locators.requestDate);
         await this.click(this.locators.monthSelection);
@@ -41,7 +41,7 @@ export class MyRequestsPage extends Actions {
         await this.click(this.locators.continueRequestButton);
     }
 
-    async createNewSickLeaveRequest(requestType: string, notes: string) {
+    async createNewSickLeaveRequest(notes: string) {
         await this.click(this.locators.sickLeaveRequestTypeOption);
         await this.click(this.locators.requestDate);
         await this.click(this.locators.monthSelection);
@@ -58,12 +58,16 @@ export class MyRequestsPage extends Actions {
     async submitRequest() {
         await this.click(this.locators.submitRequestButton);
     }
-    async cancelRequest() {
-        //Cancel the request to make new request creation possible in next test run
-        await this.page.waitForTimeout(2000);
+    async openRequestPreview() {
+        await this.waitForElement(this.locators.previewRequestButton);
         await this.click(this.locators.previewRequestButton);
+    }
+
+    async confirmCancelRequest() {
+        //Cancel the request to make new request creation possible in next test run
         await this.click(this.locators.cancelRequestButton);
         await this.click(this.locators.confirmCancelButton);
+        await this.waitForElement(this.locators.cancelSuccessMessage);
     }
 
     async assertAttachmentDeadlineAlert(): Promise<boolean> {

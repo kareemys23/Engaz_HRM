@@ -19,21 +19,23 @@ test.describe('My Requests', () => {
     test('create new request Maternity Request successfully', async () => {
         await myRequestsPage.navigateToMyRequests();
         await myRequestsPage.createNewRequestFunction();
-        await myRequestsPage.createNewMaternityRequest('Maternity Leave', 'Test request notes');
+        await myRequestsPage.createNewMaternityRequest('Test request notes');
         await myRequestsPage.submitRequest();
-        await myRequestsPage.cancelRequest();
+        await myRequestsPage.openRequestPreview();
+        await myRequestsPage.confirmCancelRequest();
     });
 
     test('create new sick leave request successfully', async () => {
         await myRequestsPage.navigateToMyRequests();
         await myRequestsPage.createNewRequestFunction();
-        await myRequestsPage.createNewSickLeaveRequest('Sick Leave', 'Test sick leave request notes');
+        await myRequestsPage.createNewSickLeaveRequest('Test sick leave request notes');
         await myRequestsPage.submitRequest();
-        await myRequestsPage.cancelRequest();
+        await myRequestsPage.openRequestPreview();
         await test.step('Verify attachment deadline alert is visible', async () => {
             const attachmentDeadlineAlertVisible = await myRequestsPage.assertAttachmentDeadlineAlert();
             expect(attachmentDeadlineAlertVisible).toBeTruthy();
         });
+        await myRequestsPage.confirmCancelRequest();
     });
 
     // test.afterAll(async ({ page }) => {
