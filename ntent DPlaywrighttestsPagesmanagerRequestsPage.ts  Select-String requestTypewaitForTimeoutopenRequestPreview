@@ -1,0 +1,10 @@
+[33m799bb4a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Merge pull request #10 from kareemys23/Create_Request_OnBehalf
+[33mb111033[m[33m ([m[1;31morigin/Create_Request_OnBehalf[m[33m, [m[1;32mCreate_Request_OnBehalf[m[33m)[m feat: Add functionality for sick leave requests with and without attachments
+[33m484c9d4[m Merge pull request #9 from kareemys23/Create_Request_OnBehalf
+[33m162c38c[m refactor: Simplify request creation methods by removing redundant parameters and improve request cancellation flow
+[33me9a4f21[m Merge pull request #8 from kareemys23/Create_Request_OnBehalf
+[33m397cac0[m feat: Enhance manager requests functionality and add logout feature
+[33m625b734[m Merge branch 'main' of https://github.com/kareemys23/Engaz_HRM
+[33m8a7372c[m Merge pull request #7 from kareemys23/Create_Request_OnBehalf
+[33m8e2ed61[m refactor: Remove success message assertions from maternity request test
+[33m7a784b8[m Merge pull request #6 from kareemys23/Create_Request_OnBehalf

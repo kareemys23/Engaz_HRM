@@ -11,7 +11,7 @@ export class LogoutPage extends Actions {
     }
 
     async logout() {
-        await this.locators.userMenuButton.click();
-        await this.locators.logoutbutton.click();
+        await this.click(this.locators.userMenuButton);
+        await this.click(this.locators.logoutbutton);
     }
 }

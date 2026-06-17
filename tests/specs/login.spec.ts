@@ -11,8 +11,8 @@ test.describe('Login', () => {
     });
 
     test('valid credentials → successful login and correct redirect', async ({ page }) => {
-        await loginPage.login(loginData.validUser.email, loginData.validUser.password);
-        await expect(page).toHaveURL(loginData.validUser.redirectURL);
+        await loginPage.login(loginData.validManager.email, loginData.validManager.password);
+        await expect(page).toHaveURL(loginData.validManager.redirectURL);
     });
 
     test('invalid credentials → shows correct error message', async () => {
@@ -28,8 +28,8 @@ test.describe('Login', () => {
     });
 
     test('already authenticated user revisits login → redirected away', async ({ page }) => {
-        await loginPage.login(loginData.validUser.email, loginData.validUser.password);
-        await expect(page).toHaveURL(loginData.validUser.redirectURL);
+        await loginPage.login(loginData.validManager.email, loginData.validManager.password);
+        await expect(page).toHaveURL(loginData.validManager.redirectURL);
         await loginPage.goto();
         expect(await loginPage.isOnLoginPage()).toBe(false);
     });
