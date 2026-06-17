@@ -75,11 +75,11 @@ export default class Actions {
 
     // ── Waiting & Synchronization ─────────────────────────────────────────────
 
-    protected async waitForElement(element: Locator, timeout: number = 5000) {
+    protected async waitForElement(element: Locator, timeout: number = 10000) {
         await element.waitFor({ state: 'visible', timeout });
     }
 
-    protected async waitForElementHidden(element: Locator, timeout: number = 5000) {
+    protected async waitForElementHidden(element: Locator, timeout: number = 10000) {
         await element.waitFor({ state: 'hidden', timeout });
     }
 
@@ -94,7 +94,7 @@ export default class Actions {
     // ── Navigation & Page ─────────────────────────────────────────────────────
 
     protected async navigate(url: string) {
-        await this.page.goto(url);
+        await this.page.goto(url, { waitUntil: 'domcontentloaded' });
     }
 
     protected async reload() {

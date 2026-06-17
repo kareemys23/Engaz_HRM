@@ -20,6 +20,11 @@ export class LoginPage extends Actions {
         await this.click(this.locators.submitButton);
     }
 
+    async loginSuccessfully(email: string, password: string) {
+        await this.login(email, password);
+        await this.page.waitForURL(/dashboard/, { timeout: 15000 });
+    }
+
     async submitEmptyForm() {
         await this.locators.usernameInput.click();
         await this.locators.passwordInput.click();
