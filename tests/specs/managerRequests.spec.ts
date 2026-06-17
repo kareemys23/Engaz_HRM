@@ -24,12 +24,6 @@ test.describe('Manager Requests', () => {
         await expect(managerPage).toHaveURL(loginData.validManager.redirectURL);
     });
 
-    test.afterEach(async () => {
-        await managerContext?.close();
-        await employeeContext?.close();
-        employeeContext = undefined;
-    });
-
     test('create new request Maternity Request successfully', async () => {
         await managerRequestsPage.navigateToManagerRequests();
         await managerRequestsPage.createNewRequestFunction();
@@ -64,6 +58,12 @@ test.describe('Manager Requests', () => {
         await myRequestsPage.confirmCancelRequest();
     });
 
+    test.afterEach(async () => {
+        await managerContext?.close();
+        await employeeContext?.close();
+        employeeContext = undefined;
+    });
+    
     test('create new sick leave request successfully with attachments', async ({ browser }) => {
         // ----- Manager session -----
         await managerRequestsPage.navigateToManagerRequests();
