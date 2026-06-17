@@ -45,7 +45,7 @@ export class ManagerRequestsPage extends Actions {
         await this.click(this.locators.continueRequestButton);
     }
 
-    async createNewSickLeaveRequest(notes: string) {
+    async fillNewSickLeaveRequest() {
         await this.click(this.locators.sickLeaveRequestTypeOption);
         await this.click(this.locators.employeeNamefield);
         await this.click(this.locators.employeeNameSelector);
@@ -58,6 +58,19 @@ export class ManagerRequestsPage extends Actions {
         await this.click(this.locators.firstDaySelection);
         await this.waitForElement(this.locators.secondDaySelection);
         await this.click(this.locators.secondDaySelection);
+    }
+
+    async createNewSickLeaveRequestWithoutAttachments(notes: string) {
+
+        await this.fillNewSickLeaveRequest();
+        await this.click(this.locators.continueRequestButton);
+    }
+
+    async createNewSickLeaveRequestWithAttachments(notes: string, attachmentFilePath: string) {
+
+        await this.fillNewSickLeaveRequest();
+        await this.uploadFile(this.locators.requestAttachmentsSelector, attachmentFilePath);
+        await this.assertStep('Attachement is uploaded', () => expect(this.locators.attachementUploadedLabel).toContainText('100% uploaded', { timeout: 10000 }));
         await this.click(this.locators.continueRequestButton);
     }
 
@@ -69,13 +82,9 @@ export class ManagerRequestsPage extends Actions {
         await this.waitForElement(this.locators.previewRequestButton);
         await this.click(this.locators.previewRequestButton);
         await this.waitForElement(this.locators.closePreviewFormButton);
+        await this.waitForElement(this.locators.attchementsubmittedassertion);
+        await this.assertStep('Attachement is uploaded', () => expect(this.locators.attchementsubmittedassertion).toContainText('Medical document submitted', { timeout: 10000 }));
         await this.click(this.locators.closePreviewFormButton);
-    }
-
-    async rejectSickLeaveRequest() {
-        await this.waitForElement(this.locators.rejectRequestButton);
-        await this.click(this.locators.rejectRequestButton);
-
     }
 
     async rejectRequest() {
