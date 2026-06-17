@@ -38,11 +38,11 @@ test.describe('Manager Requests', () => {
         await managerRequestsPage.rejectRequest();
     });
 
-    test('create new sick leave request successfully', async ({ browser }) => {
+    test('create new sick leave request successfully without attachments', async ({ browser }) => {
         // ----- Manager session -----
         await managerRequestsPage.navigateToManagerRequests();
         await managerRequestsPage.createNewRequestFunction();
-        await managerRequestsPage.createNewSickLeaveRequest('Test sick leave request notes');
+        await managerRequestsPage.createNewSickLeaveRequestWithoutAttachments('Test sick leave request notes');
         await managerRequestsPage.submitRequest();
 
         // ----- Employee session -----
@@ -62,5 +62,15 @@ test.describe('Manager Requests', () => {
             expect(attachmentDeadlineAlertVisible).toBeTruthy();
         });
         await myRequestsPage.confirmCancelRequest();
+    });
+
+    test('create new sick leave request successfully with attachments', async ({ browser }) => {
+        // ----- Manager session -----
+        await managerRequestsPage.navigateToManagerRequests();
+        await managerRequestsPage.createNewRequestFunction();
+        await managerRequestsPage.createNewSickLeaveRequestWithAttachments('Test sick leave request notes', process.env.AttachmentFilePath as string);
+        await managerRequestsPage.submitRequest();
+        await managerRequestsPage.previewRequest();
+        await managerRequestsPage.rejectRequest();
     });
 });
