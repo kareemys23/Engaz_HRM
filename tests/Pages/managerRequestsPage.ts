@@ -70,6 +70,7 @@ export class ManagerRequestsPage extends Actions {
 
         await this.fillNewSickLeaveRequest();
         await this.uploadFile(this.locators.requestAttachmentsSelector, attachmentFilePath);
+        await this.scrollIntoView(this.locators.attachementUploadedLabel);
         await this.assertStep('Attachement is uploaded', () => expect(this.locators.attachementUploadedLabel).toContainText('100% uploaded', { timeout: 10000 }));
         await this.click(this.locators.continueRequestButton);
     }
@@ -82,7 +83,7 @@ export class ManagerRequestsPage extends Actions {
         await this.waitForElement(this.locators.previewRequestButton);
         await this.click(this.locators.previewRequestButton);
         await this.waitForElement(this.locators.closePreviewFormButton);
-        await this.waitForElement(this.locators.attchementsubmittedassertion);
+        await this.scrollIntoView(this.locators.attchementsubmittedassertion);
         await this.assertStep('Attachement is uploaded', () => expect(this.locators.attchementsubmittedassertion).toContainText('Medical document submitted', { timeout: 10000 }));
         await this.click(this.locators.closePreviewFormButton);
     }

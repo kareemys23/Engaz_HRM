@@ -15,10 +15,13 @@ export class MyRequestsLocators {
     readonly deliveryDatePicker: Locator;
     readonly requestNotes: Locator;
     readonly requestAttachments: Locator;
+    readonly requestAttachmentsSelector: Locator;
+    readonly attachementUploadedLabel: Locator;
     readonly continueRequestButton: Locator;
     readonly submitRequestButton: Locator;
     readonly successMessage: Locator;
     readonly previewRequestButton: Locator;
+    readonly attchementsubmittedassertion: Locator;
     readonly requestSickAttachmentsAlert: Locator;
     readonly cancelRequestButton: Locator;
     readonly confirmCancelButton: Locator;
@@ -39,10 +42,13 @@ export class MyRequestsLocators {
         this.deliveryDatePicker = page.locator('div').filter({ hasText: /^28$/ }).nth(1);
         this.requestNotes = page.locator('#reason');
         this.requestAttachments = page.getByRole('img', { name: 'upload' });
+        this.requestAttachmentsSelector = page.locator('input[type="file"]');
+        this.attachementUploadedLabel = page.locator('app-file-upload-input');
         this.continueRequestButton = page.getByRole('button', { name: 'Continue' });
         this.submitRequestButton = page.getByRole('button', { name: 'Submit' });
         this.successMessage = page.getByText('Sep 21 - Sep 24,').first();
         this.previewRequestButton = page.getByRole('button', { name: 'View' }).first();
+        this.attchementsubmittedassertion = page.locator('app-file-display');
         this.requestSickAttachmentsAlert = page.locator('section');
         this.cancelRequestButton = page.getByRole('button', { name: 'cancel Cancel Request' });
         this.confirmCancelButton = page.getByRole('button', { name: 'Yes, Cancel Request' });
