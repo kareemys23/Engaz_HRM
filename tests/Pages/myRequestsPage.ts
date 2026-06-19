@@ -41,7 +41,7 @@ export class MyRequestsPage extends Actions {
         await this.click(this.locators.continueRequestButton);
     }
 
-    async createNewSickLeaveRequest(notes: string) {
+    async fillNewSickLeaveRequest() {
         await this.click(this.locators.sickLeaveRequestTypeOption);
         await this.click(this.locators.requestDate);
         await this.click(this.locators.monthSelection);
@@ -52,6 +52,20 @@ export class MyRequestsPage extends Actions {
         await this.click(this.locators.firstDaySelection);
         await this.waitForElement(this.locators.secondDaySelection);
         await this.click(this.locators.secondDaySelection);
+    }
+
+    async createNewSickLeaveRequestWithoutAttachments(notes: string) {
+
+        await this.fillNewSickLeaveRequest();
+        await this.click(this.locators.continueRequestButton);
+    }
+
+    async createNewSickLeaveRequestWithAttachments(notes: string, attachmentFilePath: string) {
+
+        await this.fillNewSickLeaveRequest();
+        await this.uploadFile(this.locators.requestAttachmentsSelector, attachmentFilePath);
+        await this.scrollIntoView(this.locators.attachementUploadedLabel);
+        await this.assertStep('Attachement is uploaded', () => expect(this.locators.attachementUploadedLabel).toContainText('100% uploaded', { timeout: 10000 }));
         await this.click(this.locators.continueRequestButton);
     }
 
@@ -75,6 +89,15 @@ export class MyRequestsPage extends Actions {
             await this.assertStep('Attachment deadline alert is visible', () =>
                 expect(this.locators.requestSickAttachmentsAlert).toContainText('Attachment deadline', { timeout: 10000 })
             );
+            return true;
+        } catch {
+            return false;
+        }
+    }
+
+    async assertAttachementUploaded(): Promise<boolean> {
+        try {
+            await this.assertStep('Attachement is uploaded', () => expect(this.locators.attchementsubmittedassertion).toContainText('Medical document submitted', { timeout: 10000 }));
             return true;
         } catch {
             return false;
