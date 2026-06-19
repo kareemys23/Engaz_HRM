@@ -25,15 +25,28 @@ test.describe('My Requests', () => {
         await myRequestsPage.confirmCancelRequest();
     });
 
-    test('create new sick leave request successfully', async () => {
+    test('create new sick leave request successfully without attachments', async () => {
         await myRequestsPage.navigateToMyRequests();
         await myRequestsPage.createNewRequestFunction();
-        await myRequestsPage.createNewSickLeaveRequest('Test sick leave request notes');
+        await myRequestsPage.createNewSickLeaveRequestWithoutAttachments('Test sick leave request notes');
         await myRequestsPage.submitRequest();
         await myRequestsPage.openRequestPreview();
         await test.step('Verify attachment deadline alert is visible', async () => {
             const attachmentDeadlineAlertVisible = await myRequestsPage.assertAttachmentDeadlineAlert();
             expect(attachmentDeadlineAlertVisible).toBeTruthy();
+        });
+        await myRequestsPage.confirmCancelRequest();
+    });
+
+    test('create new sick leave request successfully with attachments', async () => {
+        await myRequestsPage.navigateToMyRequests();
+        await myRequestsPage.createNewRequestFunction();
+        await myRequestsPage.createNewSickLeaveRequestWithAttachments('Test sick leave request notes', process.env.AttachmentFilePath as string);
+        await myRequestsPage.submitRequest();
+        await myRequestsPage.openRequestPreview();
+        await test.step('Verify attachment is uploaded', async () => {
+            const attachmentUploaded = await myRequestsPage.assertAttachementUploaded();
+            expect(attachmentUploaded).toBeTruthy();
         });
         await myRequestsPage.confirmCancelRequest();
     });
