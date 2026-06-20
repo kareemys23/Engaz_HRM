@@ -19,6 +19,7 @@ export class ManagerRequestsPage extends Actions {
     }
 
     async createNewRequestFunction() {
+        await this.navigateToManagerRequests();
         await this.waitForElement(this.locators.createRequestButton);
         await this.click(this.locators.createRequestButton);
         await this.assertStep('Create request popup header is visible', () => expect(this.locators.createRequestPopupHeader).toBeVisible());
@@ -26,6 +27,7 @@ export class ManagerRequestsPage extends Actions {
         await this.click(this.locators.requestTypeList);
     }
     async createNewMaternityRequest(notes: string) {
+        await this.createNewRequestFunction();
         await this.click(this.locators.maternityRequestTypeOption);
         await this.click(this.locators.employeeNamefield);
         await this.click(this.locators.employeeNameSelector);
@@ -46,6 +48,7 @@ export class ManagerRequestsPage extends Actions {
     }
 
     async fillNewSickLeaveRequest() {
+        await this.createNewRequestFunction();
         await this.click(this.locators.sickLeaveRequestTypeOption);
         await this.click(this.locators.employeeNamefield);
         await this.click(this.locators.employeeNameSelector);

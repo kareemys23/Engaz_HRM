@@ -25,8 +25,6 @@ test.describe('Manager Requests', () => {
     });
 
     test('create new request Maternity Request successfully', async () => {
-        await managerRequestsPage.navigateToManagerRequests();
-        await managerRequestsPage.createNewRequestFunction();
         await managerRequestsPage.createNewMaternityRequest('Test request notes');
         await managerRequestsPage.submitRequest();
         await managerRequestsPage.rejectRequest();
@@ -34,8 +32,6 @@ test.describe('Manager Requests', () => {
 
     test('create new sick leave request successfully without attachments', async ({ browser }) => {
         // ----- Manager session -----
-        await managerRequestsPage.navigateToManagerRequests();
-        await managerRequestsPage.createNewRequestFunction();
         await managerRequestsPage.createNewSickLeaveRequestWithoutAttachments('Test sick leave request notes');
         await managerRequestsPage.submitRequest();
 
@@ -65,9 +61,6 @@ test.describe('Manager Requests', () => {
     });
     
     test('create new sick leave request successfully with attachments', async ({ browser }) => {
-        // ----- Manager session -----
-        await managerRequestsPage.navigateToManagerRequests();
-        await managerRequestsPage.createNewRequestFunction();
         await managerRequestsPage.createNewSickLeaveRequestWithAttachments('Test sick leave request notes', process.env.AttachmentFilePath as string);
         await managerRequestsPage.submitRequest();
         await managerRequestsPage.previewRequest();
