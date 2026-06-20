@@ -17,8 +17,6 @@ test.describe('My Requests', () => {
     });
 
     test('create new request Maternity Request successfully', async () => {
-        await myRequestsPage.navigateToMyRequests();
-        await myRequestsPage.createNewRequestFunction();
         await myRequestsPage.createNewMaternityRequest('Test request notes');
         await myRequestsPage.submitRequest();
         await myRequestsPage.openRequestPreview();
@@ -26,8 +24,6 @@ test.describe('My Requests', () => {
     });
 
     test('create new sick leave request successfully without attachments', async () => {
-        await myRequestsPage.navigateToMyRequests();
-        await myRequestsPage.createNewRequestFunction();
         await myRequestsPage.createNewSickLeaveRequestWithoutAttachments('Test sick leave request notes');
         await myRequestsPage.submitRequest();
         await myRequestsPage.openRequestPreview();
@@ -39,8 +35,6 @@ test.describe('My Requests', () => {
     });
 
     test('create new sick leave request successfully with attachments', async () => {
-        await myRequestsPage.navigateToMyRequests();
-        await myRequestsPage.createNewRequestFunction();
         await myRequestsPage.createNewSickLeaveRequestWithAttachments('Test sick leave request notes', process.env.AttachmentFilePath as string);
         await myRequestsPage.submitRequest();
         await myRequestsPage.openRequestPreview();
@@ -51,6 +45,21 @@ test.describe('My Requests', () => {
         await myRequestsPage.confirmCancelRequest();
     });
 
+    test('edit maternity request successfully', async () => {
+        await myRequestsPage.createNewMaternityRequest('Test request notes');
+        await myRequestsPage.submitRequest();
+        await myRequestsPage.editMaternityRequest('Updated request notes', process.env.AttachmentFilePath as string);
+        await myRequestsPage.submitRequest();
+        await myRequestsPage.confirmCancelRequest();
+    });
+
+    test('edit sick leave request successfully with attachments', async () => {
+        await myRequestsPage.createNewSickLeaveRequestWithAttachments('Test sick leave request notes', process.env.AttachmentFilePath as string);
+        await myRequestsPage.submitRequest();
+        await myRequestsPage.editSickLeaveRequestWithAttachments('Updated sick leave request notes', process.env.AttachmentFilePath2 as string);
+        await myRequestsPage.submitRequest();
+        await myRequestsPage.confirmCancelRequest();
+    });
     // test.afterAll(async ({ page }) => {
     //     await page.close();
     // }
