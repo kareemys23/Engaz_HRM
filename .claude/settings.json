@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//d/Playwright/mobile/node_modules/webdriverio/build/commands/browser/**)",
+      "Bash(grep -rn \"function \\\\$\\(\" /d/Playwright/mobile/node_modules/webdriverio/build/types.d.ts)",
+      "Bash(grep -n \"declare.*\\\\\\\\\\\\$\\\\b\\\\|const \\\\\\\\\\\\$:\" /d/Playwright/mobile/node_modules/@wdio/globals/build/index.d.ts)",
+      "Bash(grep -rn \"^\\\\s*\\\\\\\\\\\\$\\(\" /d/Playwright/mobile/node_modules/webdriverio/build/index.d.ts)",
+      "Bash(tail -10 /d/Playwright/mobile/node_modules/webdriverio/build/commands/browser/\\\\$.d.ts)"
+    ]
+  }
+}
