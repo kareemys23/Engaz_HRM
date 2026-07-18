@@ -1,17 +1,24 @@
 # Environment variables (never commit secrets)
 .env
 
-# Playwright
-node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/playwright/.auth/
+# Web (Playwright)
+web/node_modules/
+web/allure-report/
+web/allure-results/
+web/test-results/
+web/playwright-report/
+web/blob-report/
+web/playwright/.cache/
+web/playwright/.auth/
+web/dist/
 
-# Allure
-/allure-results/
-/allure-report/
+# Mobile (WebdriverIO/Appium)
+mobile/node_modules/
+mobile/allure-results/
+mobile/allure-report/
+mobile/dist/
 
-# TypeScript build output
-/dist/
+# Build artifacts / screenshots
+**/*.apk
+**/debug-screen.png
+**/login-filled.png
