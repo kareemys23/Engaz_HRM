@@ -19,14 +19,16 @@ export const config: WebdriverIO.Config = {
       platformName: 'Android',
       'appium:automationName': 'FlutterIntegration',
       'appium:deviceName': 'Engaz',
-      'appium:noReset': true,
+      'appium:app': 'D:\\Engaz HR\\Android build\\app-debug.apk',
+      'appium:noReset': false,
+      'appium:autoGrantPermissions': true,
     },
   ],
 
   logLevel: 'info',
   bail: 0,
   waitforTimeout: 10000,
-  connectionRetryTimeout: 120000,
+  connectionRetryTimeout: 300000,
   connectionRetryCount: 3,
 
   services: ['appium'],
