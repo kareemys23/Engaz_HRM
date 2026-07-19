@@ -1,6 +1,25 @@
 import type { ChainablePromiseElement } from 'webdriverio';
+import { addAttachment, step } from '@wdio/allure-reporter';
 
 export default class Actions {
+
+    // ── Locator Resolution ───────────────────────────────────────────────────
+
+    // Unlike Playwright's web Locator objects, WebdriverIO + Appium native-app
+    // locators can't be resolved synchronously — browser.findElement() is
+    // inherently async. This method centralizes that one unavoidable async
+    // resolution step so locator files themselves can stay clean, framework-
+    // agnostic data instead of each field carrying its own async lookup.
+    protected async resolve(locator: { using: string; value: string }) {
+        const el = await browser.findElement(locator.using, locator.value);
+        return $(el);
+    }
+
+    // Builds a full LocatorDescriptor from a generated key (see keyGenerator.ts),
+    // defaulting to the '-flutter key' strategy the app's key convention is built on.
+    protected byKey(key: string): { using: string; value: string } {
+        return { using: '-flutter key', value: key };
+    }
 
     // ── Mouse & Keyboard ──────────────────────────────────────────────────────
 
@@ -183,5 +202,18 @@ export default class Actions {
 
     protected async takeScreenshot(name: string) {
         await browser.saveScreenshot(`screenshots/${name}.png`);
+    }
+
+    // ── Assertions ────────────────────────────────────────────────────────────
+
+    protected async assertStep<T>(stepName: string, assertion: () => Promise<T>): Promise<T> {
+        return await step(stepName, async () => {
+            try {
+                return await assertion();
+            } finally {
+                const screenshot = await browser.takeScreenshot();
+                await addAttachment(`${stepName} - screenshot`, Buffer.from(screenshot, 'base64'), 'image/png');
+            }
+        });
     }
 }

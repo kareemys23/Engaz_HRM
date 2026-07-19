@@ -1,21 +1,15 @@
-import { ChainablePromiseElement } from 'webdriverio';
-
-export class LoginLocators {
-    readonly subdomainField: ChainablePromiseElement;
-    readonly emailField:     ChainablePromiseElement;
-    readonly passwordField:  ChainablePromiseElement;
-    readonly loginButton:    ChainablePromiseElement;
-    readonly errorMessage:   ChainablePromiseElement;
-    readonly pageTitle:      ChainablePromiseElement;
-    readonly dashboardIndicator: ChainablePromiseElement;
-
-    constructor() {
-        this.subdomainField = $(async () => browser.findElement('-flutter key', 'subdomain_field'));
-        this.emailField     = $(async () => browser.findElement('-flutter key', 'email_field'));
-        this.passwordField  = $(async () => browser.findElement('-flutter key', 'password_field'));
-        this.loginButton    = $(async () => browser.findElement('-flutter text containing', 'Login'));
-        this.errorMessage   = $(async () => browser.findElement('-flutter type', 'ErrorText')); // PLACEHOLDER — no confirmed locator yet, see note below
-        this.pageTitle      = $(async () => browser.findElement('-flutter text containing', 'Sign in to your Account'));
-        this.dashboardIndicator = $(async () => browser.findElement('-flutter text containing', 'Dashboard')); // PLACEHOLDER — no confirmed post-login element yet; verify via Appium Inspector against a real successful login, or get a dev-provided key.
-    }
+export interface LocatorDescriptor {
+    using: string;
+    value: string;
 }
+
+export const loginLocators: Record<string, LocatorDescriptor> = {
+    subdomainField:     { using: '-flutter key', value: 'subdomain_field' },
+    emailField:         { using: '-flutter key', value: 'email_field' },
+    passwordField:      { using: '-flutter key', value: 'password_field' },
+    loginButton:        { using: '-flutter text containing', value: 'Login' },
+    // PLACEHOLDER — no confirmed locator yet, see note below
+    errorMessage:       { using: '-flutter type', value: 'ErrorText' },
+    pageTitle:          { using: '-flutter text containing', value: 'Sign in to your Account' },
+    homePageButton:       { using: '-flutter text containing', value: 'Home' },
+};

@@ -8,21 +8,25 @@ export const loginData = {
     validManager: {
         email:         getEnv('VALID_MANAGER_EMAIL'),
         password:      getEnv('VALID_MANAGER_PASSWORD'),
+        subdomain:     getEnv('VALID_MANAGER_SUBDOMAIN'),
         redirectURL:   /dashboard/,
     },
     validEmployee: {
         email:         getEnv('VALID_EMPLOYEE_EMAIL'),
         password:      getEnv('VALID_EMPLOYEE_PASSWORD'),
+        subdomain:     getEnv('VALID_EMPLOYEE_SUBDOMAIN'),
         redirectURL:   /dashboard/,
     },
     invalidUser: {
         email:         getEnv('INVALID_USER_EMAIL'),
         password:      getEnv('INVALID_USER_PASSWORD'),
+        subdomain:     getEnv('INVALID_USER_SUBDOMAIN'),
         expectedError: 'Invalid email or password',
     },
     emptyUser: {
         email:         '',
         password:      '',
+        subdomain:     '',
         expectedError: 'This field is required',
     },
 };
