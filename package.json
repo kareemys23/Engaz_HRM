@@ -4,5 +4,8 @@
   "scripts": {
     "test:web": "cd web && npx playwright test",
     "test:mobile": "cd mobile && npm test"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^10.5.0"
   }
 }

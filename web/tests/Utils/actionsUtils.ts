@@ -120,6 +120,27 @@ export default class Actions {
         await element.selectOption(option);
     }
 
+    /** Selects an option from a PrimeNG p-select dropdown by its trigger placeholder text and option label. */
+    protected async selectDropdownOption(triggerText: string, optionText: string) {
+        await this.page.getByText(triggerText, { exact: true }).click();
+        await this.page.getByRole('option', { name: optionText, exact: true }).click();
+    }
+
+    /** Navigates a PrimeNG p-datepicker to the given day/month/year and selects it. */
+    protected async pickCalendarDate(datepickerInput: Locator, day: number, monthShort: string, year: number) {
+        await datepickerInput.click();
+        await this.page.locator('.p-datepicker-select-year').click();
+        for (let i = 0; i < 20; i++) {
+            const yearTexts = await this.page.locator('.p-datepicker-year').allInnerTexts();
+            if (yearTexts.includes(String(year))) break;
+            const firstYear = parseInt(yearTexts[0], 10);
+            await this.page.locator(year < firstYear ? '.p-datepicker-prev-button' : '.p-datepicker-next-button').click();
+        }
+        await this.page.locator('.p-datepicker-year', { hasText: String(year) }).click();
+        await this.page.locator('.p-datepicker-month', { hasText: monthShort }).click();
+        await this.page.locator('.p-datepicker-day:not(.p-datepicker-other-month)', { hasText: new RegExp(`^${day}$`) }).first().click();
+    }
+
     protected async check(element: Locator) {
         await element.check();
     }

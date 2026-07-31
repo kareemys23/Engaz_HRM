@@ -4,7 +4,7 @@ const fs = require('fs');
 
 class AllureReporter {
     onEnd() {
-        const root = process.cwd();
+        const root = path.resolve(__dirname, '..');
         const isWin = process.platform === 'win32';
         const binName = isWin ? 'allure.cmd' : 'allure';
         const allureBin = path.join(root, 'node_modules', '.bin', binName);

@@ -14,7 +14,13 @@
       "Bash(tee /tmp/out.log)",
       "Bash(node -e \"console.log\\(process.env.TS_NODE_CACHE\\)\")",
       "Bash(grep -n \"assertStep\" /tmp/out.log | head -20 *)",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "Bash(npm uninstall *)",
+      "Bash(node -e \"console.log\\(require\\('path'\\).resolve\\('d:/Playwright/web/tests', '..'\\)\\)\")",
+      "Bash(node -e \"console.log\\(require.resolve\\('allure-commandline/package.json'\\)\\)\")",
+      "Bash(node \"C:/Users/EXPRESS/AppData/Local/Temp/claude/d--Playwright/6e7e2f1e-fa06-4e06-a205-ec08ede0499e/scratchpad/debugAddEmployee.js\")",
+      "Bash(cp \"C:/Users/EXPRESS/AppData/Local/Temp/claude/d--Playwright/6e7e2f1e-fa06-4e06-a205-ec08ede0499e/scratchpad/debugAddEmployee.js\" /d/Playwright/web/debugAddEmployee.js)",
+      "Bash(node debugAddEmployee.js)"
     ]
   }
 }
